@@ -117,6 +117,8 @@ if(!empty($_FILES['importFileUpload'])) {
                     if($shortcut != "placeholder") {
                         $exec = "rm ../shared/shortcuts/".$shortcut;
                         $result = exec($exec);
+                        $exec = "rm -f ../shared/shortcuts/".$shortcut."_RCRSV";
+                        $result = exec($exec);
                     }
                 }
                 $messageSuccess .= $lang['cardImportFileDeleteMessageAudio'];

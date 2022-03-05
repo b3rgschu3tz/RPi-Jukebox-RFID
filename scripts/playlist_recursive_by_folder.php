@@ -192,8 +192,9 @@ foreach($folders as $folder) {
 			if ($edition == "plusSpotify") {
 				// M3U will contain local:track: path for mopidy
 				foreach ($folder_files as $key => $value) {
-					$folder_files[$key] = "local:track:".str_replace("%2F", "/", rawurlencode(str_replace($Audio_Folders_Path."/", "", $folder."/".$value)));
-				}
+					 #$folder_files[$key] = "local:track:".str_replace("%2F", "/", rawurlencode(str_replace($Audio_Folders_Path."/", "", $folder."/".$value)));
+                     $folder_files[$key] = "file://".substr($Audio_Folders_Path."/".$folder."/".$value, strlen($Audio_Folders_Path) + 1, strlen($folder."/".$value));
+                }
 			} elseif ($edition == "classic") {
 				// M3U will contain normal relative path
 				foreach ($folder_files as $key => $value) {

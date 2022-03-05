@@ -318,6 +318,13 @@ if [ "$CARDID" ]; then
             then
                 # Read human readable shortcut from file
                 FOLDER=`cat $PATHDATA/../shared/shortcuts/$CARDID`
+
+                # check if recursive flag is set
+                if [ -a "$PATHDATA/../shared/shortcuts/$CARDID_RCRSV" ];then
+                    if [ "${DEBUG_rfid_trigger_play_sh}" == "TRUE" ]; then echo "Play folder recursively"   >> $PATHDATA/../logs/debug.log; fi
+                    VALUE="recursive"
+                fi
+
                 # Add info into the log, making it easer to monitor cards
                 echo "This ID has been used before." >> $PATHDATA/../shared/latestID.txt
                 if [ "${DEBUG_rfid_trigger_play_sh}" == "TRUE" ]; then echo "This ID has been used before."   >> $PATHDATA/../logs/debug.log; fi
@@ -343,7 +350,7 @@ fi
 # Sloppy error check, because we assume the best.
 
 if [ "${DEBUG_rfid_trigger_play_sh}" == "TRUE" ]; then echo "# Attempting to play: $AUDIOFOLDERSPATH/$FOLDER" >> $PATHDATA/../logs/debug.log; fi
-if [ "${DEBUG_rfid_trigger_play_sh}" == "TRUE" ]; then echo "# Type of play \$VALUE: $VALUE" >> $PATHDATA/../logs/debug.log; fi
+if [ "${DEBUG_rfid_trigger_play_sh}" == "TRUE" ]; then echo "# Type of play \$VALUE: $f" >> $PATHDATA/../logs/debug.log; fi
 
 # check if
 # - $FOLDER is not empty (! -z "$FOLDER")

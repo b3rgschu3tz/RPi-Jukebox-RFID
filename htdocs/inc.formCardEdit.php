@@ -79,6 +79,15 @@ foreach($audiofolders as $keyfolder => $audiofolder) {
           <span class="help-block"><?php print $lang['cardFormNewFolderHelp']; ?></span>  
           </div>
         </div>
+
+        <!-- Checkbox for recursive playing -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="playAudioFolderRecursive"><?php print "Recursive folder playing"; ?></label> 
+          <div class="col-md-6">
+          <input type="checkbox" name="playAudioFolderRecursive" id="playAudioFolderRecursive"
+          value="Checked">
+          <span class="help-block"><?php print "Folder will be scanned and played recursively"; ?></span>  
+        </div>
         
 <!-----------------------------------------
 - Trigger for system function (like volume up, pause, shutdown)

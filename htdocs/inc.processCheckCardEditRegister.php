@@ -120,6 +120,8 @@ if($post['delete'] == "delete") {
         print "</pre>";
     } 
     exec($exec);
+    $exec =  "rm -f".$fileshortcuts."_RCRSV";
+    exec($exec);
 } elseif($post['submit'] == "submit") {
     /*
     * error check
@@ -288,8 +290,17 @@ if($post['delete'] == "delete") {
             * connect card with existing audio folder
             */
             // write $post['audiofolder'] to cardID file in shortcuts
-            $exec = "rm ".$fileshortcuts."; echo '".$post['audiofolder']."' > ".$fileshortcuts."; chmod 777 ".$fileshortcuts;
-            exec($exec);
+            if(trim($post['playAudioFolderRecursive']) != ""){
+                // New folder is created so we link a RFID to it. Write $post['audiofolderNew'] to cardID file in shortcuts
+                $exec = "rm ".$fileshortcuts."; echo '".$post['audiofolder']."' > ".$fileshortcuts."; chmod 777 ".$fileshortcuts;
+                exec($exec);
+                $exec = "rm -f".$fileshortcuts."_RCRSV"."; echo 'Placeholder' > ".$fileshortcuts."_RCRSV"."; chmod 777 ".$fileshortcuts;
+                exec($exec);
+            }else{
+                // New folder is created so we link a RFID to it. Write $post['audiofolderNew'] to cardID file in shortcuts
+                $exec = "rm ".$fileshortcuts."; echo '".$post['audiofolder']."' > ".$fileshortcuts."; chmod 777 ".$fileshortcuts;
+                exec($exec);
+            }
             // success message
             $messageSuccess = "<p>".$lang['cardRegisterFolder2Card']."  ".$lang['globalFolder']." '".$post['audiofolder']."' ".$lang['globalCardId']." '".$post['cardID']."'</p>";
         }
@@ -302,8 +313,17 @@ if($post['delete'] == "delete") {
             exec($exec);
             $foldername = $Audio_Folders_Path."/".$post['audiofolderNew'];
             // New folder is created so we link a RFID to it. Write $post['audiofolderNew'] to cardID file in shortcuts
-            $exec = "rm ".$fileshortcuts."; echo '".$post['audiofolderNew']."' > ".$fileshortcuts."; chmod 777 ".$fileshortcuts;
-            exec($exec);
+            if(trim($post['playAudioFolderRecursive']) != ""){
+                // New folder is created so we link a RFID to it. Write $post['audiofolderNew'] to cardID file in shortcuts
+                $exec = "rm ".$fileshortcuts."; echo '".$post['audiofolderNew']."' > ".$fileshortcuts."; chmod 777 ".$fileshortcuts;
+                exec($exec);
+                $exec = "rm -f".$fileshortcuts."_RCRSV"."; echo 'Placeholder' > ".$fileshortcuts."_RCRSV"."; chmod 777 ".$fileshortcuts;
+                exec($exec);
+            }else{
+                // New folder is created so we link a RFID to it. Write $post['audiofolderNew'] to cardID file in shortcuts
+                $exec = "rm ".$fileshortcuts."; echo '".$post['audiofolderNew']."' > ".$fileshortcuts."; chmod 777 ".$fileshortcuts;
+                exec($exec);
+            }
             // success message
             $messageSuccess = "<p>".$lang['cardRegisterFolder2Card']."  ".$lang['globalFolder']." '".$post['audiofolderNew']."' ".$lang['globalCardId']." '".$post['cardID']."'</p>";
         }

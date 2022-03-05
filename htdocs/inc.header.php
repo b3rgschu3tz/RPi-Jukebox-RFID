@@ -270,6 +270,9 @@ if(isset($_POST['audiofolder']) && $_POST['audiofolder'] != "" && $_POST['audiof
 if(isset($_POST['audiofolderNew']) && $_POST['audiofolderNew'] != "" && $_POST['audiofolderNew'] != "false") {
     $post['audiofolderNew'] = $_POST['audiofolderNew'];
 }
+if(isset($_POST['playAudioFolderRecursive']) && $_POST['playAudioFolderRecursive'] != "") {
+    $post['playAudioFolderRecursive'] = $_POST['playAudioFolderRecursive'];
+}
 if(isset($_POST['YTstreamURL']) && $_POST['YTstreamURL'] != "") {
     $post['YTstreamURL'] = $_POST['YTstreamURL'];
 }
