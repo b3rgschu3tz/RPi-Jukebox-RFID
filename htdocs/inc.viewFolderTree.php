@@ -111,27 +111,9 @@ foreach($subfolders as $key => $subfolder) {
         } elseif(file_exists($subfolder."/spotify.txt")){
             $temp['type'] = "spotify";
             $titlefile = $subfolder."/title.txt";
-            $coverfile = $subfolder."/cover.jpg";
-			
-			// this is a new and easier way for loading spotify informations!
-			$uri = file_get_contents($subfolder."/spotify.txt");
-			$url = "https://open.spotify.com/oembed/?url=".trim($uri)."&format=json";
-			$headers = stream_context_create(array('http'=>array('method'=>'GET', 'header'=>'user-agent:Phoniebox')));
-			
-			if (!file_exists($coverfile)) {
-				$str = file_get_contents($url, false, $headers);
-				$json  = json_decode($str, true);
-
-				$cover = $json['thumbnail_url'];
-				$coverdl = file_get_contents($cover, false, $headers);
-				file_put_contents($coverfile, $coverdl);
-			}
 			
 			if (!file_exists($titlefile)) {
-				$str = file_get_contents($url, false, $headers);
-				$json  = json_decode($str, true);
-
-				$title = $json['title'];
+				$title = $subfolder;
 				file_put_contents($titlefile, $title);
 			}
 			
